@@ -1,0 +1,51 @@
+<% include ../partials/header %>
+
+<section>
+  <form action="/profiles/<%= profile.id %>" method="post" novalidate enctype="multipart/form-data">
+    <fieldset>
+      <legend>Member Information</legend>
+
+      <div class="form-group">
+        <label for="first_name">First Name</label>
+        <input type="text" class="form-control" id="first_name" name="first_name" placeholder="John" required value="<%= profile.first_name %>">
+      </div>
+
+      <div class="form-group">
+        <label for="last_name">Last Name</label>
+        <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Doe" required value="<%= profile.last_name %>">
+      </div>
+
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input type="number" class="form-control" id="age" name="age" placeholder="20" required value="<%= profile.age %>" step="1" min="18" max="50">
+      </div>
+
+      <div class="form-group">
+        <label for="program">Program</label>
+        <input type="text" class="form-control" id="program" name="program" placeholder="Computer Programmer" required value="<%= profile.program %>">
+      </div>
+
+      <div class="form-group">
+        <label for="autobiography">Autobiography</label>
+        <textarea class="form-control" id="autobiography" name="autobiography" placeholder="Autobiography here..." rows="4"><%= profile.autobiography %></textarea>
+      </div>
+
+      <div class="form-group">
+        <% if ( profile.image ) { %>
+          <div class="image">
+            <img src="/images/<%= profile.image %>" class="img-thumbnail img-fluid" id="profile-image">
+          </div>
+        <% } %>
+        <input type="file" name="image" id="image" style="display: none;" onchange="readURL(this);">
+        <button type="button" style="display:inline-block;width:120px; height:50px;" onclick="document.getElementById('image').click();">Change Picture</button>
+        <label for="file" id="image-label"><%= profile.image %></label>
+      </div>
+    </fieldset>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Update profile</button>
+    </div>
+  </form>
+</section>
+
+<% include ../partials/footer %>

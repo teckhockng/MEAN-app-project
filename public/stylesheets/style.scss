@@ -1,0 +1,42 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+$background: #ecf0f1;
+$button-colour: #ff3333;
+
+$button-colour2: #6699ff;
+
+body {
+  background-color: $background;
+
+  .container {
+    background-color: #fff;
+    padding: 1em;
+    margin-top: 1em;
+    border-radius: 1em;
+
+    .card {
+      margin-bottom: 1em;
+
+      .btn.btn-danger {
+        background-color: $button-colour;
+        border: $button-colour;
+      }
+
+      .btn.btn-primary {
+        background-color: $button-colour2;
+        border: $button-colour2;
+      }
+
+      .actions {
+        form {
+          display: inline;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,44 @@
+<% include ../partials/header %>
+
+<section>
+  <form action="/profiles" method="post" novalidate enctype="multipart/form-data">
+    <fieldset>
+      <legend>Member Information</legend>
+
+      <div class="form-group">
+        <label for="first_name">First Name</label>
+        <input type="text" class="form-control" id="first_name" name="first_name" placeholder="John" required>
+      </div>
+
+      <div class="form-group">
+        <label for="last_name">Last Name</label>
+        <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Doe" required>
+      </div>
+
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input type="number" class="form-control" id="age" name="age" placeholder="20" required step="1" min="18" max="50">
+      </div>
+
+      <div class="form-group">
+        <label for="program">Program</label>
+        <input type="text" class="form-control" id="age" name="program" placeholder="Computer Programmer" required>
+      </div>
+
+      <div class="form-group">
+        <label for="autobiography">Autobiography</label>
+        <textarea class="form-control" id="autobiography" name="autobiography" placeholder="Autobiography here..." rows="4"></textarea>
+      </div>
+
+      <div class="form-group">
+        <input type="file" name="image" id="image">
+      </div>
+    </fieldset>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary btn-lg">Create Profile</button>
+    </div>
+  </form>
+</section>
+
+<% include ../partials/footer %>
