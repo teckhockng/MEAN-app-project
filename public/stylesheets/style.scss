@@ -5,7 +5,7 @@ html {
   box-sizing: inherit;
 }
 
-$background: #ecf0f1;
+$background: #2c3840;
 $button-colour: #ff3333;
 
 $button-colour2: #6699ff;
@@ -21,6 +21,7 @@ body {
 
     .card {
       margin-bottom: 1em;
+      background-color: #E5DBD7;
 
       .btn.btn-danger {
         background-color: $button-colour;
