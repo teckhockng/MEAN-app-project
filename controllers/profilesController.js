@@ -84,7 +84,7 @@ exports.create = function ( req, res, next ) {
   // image
   if ( req.files && req.files.image ) {
     let image = req.files.image
-    image.mv(__dirname + `/images/${image.name}`)
+    image.mv(`${__dirname}/images/${image.name}`)
     imageName = image.name;
   } else {
     imageName = null;
@@ -112,7 +112,7 @@ exports.update = function ( req, res, next ) {
   // image
   if ( req.files && req.files.image ) {
     let image = req.files.image
-    image.mv( __dirname + `/images/${image.name}`)
+    image.mv( `${__dirname}/images/${image.name}`)
     imageName = image.name;
   } else {
     imageName = null;
