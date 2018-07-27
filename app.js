@@ -6,6 +6,10 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
 
+require('dotenv').config({
+  path: 'variables.env'
+});
+
 // this is our home route
 var indexRouter = require('./routes/index');
 

@@ -21,15 +21,6 @@ body {
         background-color: #6699ff;
         border: #6699ff; }
       body .container .card .actions form {
-        display: inline;
-      }
-        h1 {
-          font-family: "Roboto";
-          font-weight: bold; }
-
-        p {
-          font-family: 'Lato';
-          font-size: 1.3rem;
-        }
+        display: inline; }
 
 /*# sourceMappingURL=style.css.map */
