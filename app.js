@@ -5,6 +5,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
+var fs = require('fs');
+const aws = require('aws-sdk');
+// const S3_BUCKET = process.env.S3_BUCKET;
 
 require('dotenv').config({
   path: 'variables.env'

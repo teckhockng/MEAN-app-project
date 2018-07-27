@@ -30,16 +30,16 @@
         <textarea class="form-control" id="autobiography" name="autobiography" placeholder="Autobiography here..." rows="4"><%= profile.autobiography %></textarea>
       </div>
 
-      <div class="form-group">
+      <!-- <div class="form-group">
         <% if ( profile.image ) { %>
           <div class="image">
-            <img src="/images/<%= profile.image %>" class="img-thumbnail img-fluid" id="profile-image">
+            <img src="data:<%= profile.image.contentType %>;base64,<%= profile.image.data.buffer.toString('binary') %>" class="img-thumbnail img-fluid" id="profile-image">
           </div>
         <% } %>
         <input type="file" name="image" id="image" style="display: none;" onchange="readURL(this);">
         <button type="button" style="display:inline-block;width:120px; height:50px;" onclick="document.getElementById('image').click();">Change Picture</button>
         <label for="file" id="image-label"><%= profile.image %></label>
-      </div>
+      </div> -->
     </fieldset>
 
     <div class="form-group">

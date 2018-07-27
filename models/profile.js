@@ -13,6 +13,13 @@ const mongoose = require( 'mongoose' );
 //   }
 // });
 
+const ImageSchema = new mongoose.Schema({
+  image: {
+    data: Buffer,
+    contentType: String
+  }
+});
+
 const ProfileSchema = new mongoose.Schema({
   first_name: {
     type: String,
@@ -34,9 +41,13 @@ const ProfileSchema = new mongoose.Schema({
     type: String
   },
   image: {
-    type: String
-  }
+    data: Buffer,
+    contentType: String
+    }
 });
+
+
+
 
 // make this class public
 module.exports = mongoose.model( 'Profile', ProfileSchema );

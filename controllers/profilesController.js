@@ -1,4 +1,14 @@
 var Profile = require( '../models/profile' );
+var fs = require('fs')
+// var mongoose = require('mongoose');
+// var Schema = mongoose.Schema;
+// const ImageSchema = new mongoose.Schema({
+//   image: {
+//     data: Buffer,
+//     contentType: String
+//   }
+// });
+// var A = mongoose.model('A', ImageSchema);
 
 /* VIEWS */
 // Index
@@ -60,7 +70,7 @@ exports.new = function ( req, res ) {
 exports.edit = function ( req, res, next ) {
   // locals
   let locals = {
-    title: 'Edit profile'
+    title: 'Edit profile',
   };
 
   Profile.findById({
@@ -81,13 +91,20 @@ exports.edit = function ( req, res, next ) {
 /* ACTIONS */
 // Create
 exports.create = function ( req, res, next ) {
+  var x = {data:'',
+          contentType: ''};
+
   // image
   if ( req.files && req.files.image ) {
-    let image = req.files.image
-    image.mv(`${__dirname}/public/images/${image.name}`)
-    imageName = image.name;
+    // let image = req.files.image
+    // image.mv(`${__dirname}/public/images/${image.name}`)
+    // imageName = image.name;
+    // console.log(req.file.path);
+    x.data = req.files.image.toString('base64');
+    x.contentType = 'image/' + req.files.image.name.split('.').pop();
+
   } else {
-    imageName = null;
+    x = null;
   }
 
   Profile.create({
@@ -96,9 +113,10 @@ exports.create = function ( req, res, next ) {
     age: req.body.age,
     program: req.body.program,
     autobiography: req.body.autobiography,
-    image: imageName
+    // image: x
   })
   .then( function () {
+    x = null;
     res.redirect( '/profiles' )
   })
   .catch( function ( err ) {
@@ -110,23 +128,37 @@ exports.create = function ( req, res, next ) {
 exports.update = function ( req, res, next ) {
   // images
   // image
-  if ( req.files && req.files.image ) {
-    let image = req.files.image
-    image.mv( `${__dirname}/public/images/${image.name}`)
-    imageName = image.name;
-  } else {
-    imageName = null;
-  }
+  // if ( req.files && req.files.image ) {
+  //   let image = req.files.image
+  //   image.mv( `${__dirname}/public/images/${image.name}`)
+  //   imageName = image.name;
+  // } else {
+  //   imageName = null;
+  // }
 
+  if ( req.files && req.files.image ) {
+    var x = {
+      data: '',
+      contentType: ''
+    }
+
+    x.data = req.files.image.toString('base64');
+    x.contentType = 'image/' + req.files.image.name.split('.').pop();
+
+  } else {
+    x = null;
+  }
   Profile.findById( req.params.id )
   .then(function ( profile ) {
     profile.name = req.body.name
     profile.description = req.body.description
     profile.price = req.body.price
-    profile.image = imageName
+    profile.autobiography = req.body.autobiography
+    // profile.image = x
 
     profile.save()
     .then(  function () {
+      x = null;
       res.redirect( '/profiles' )
     })
     .catch( function ( err ) {
