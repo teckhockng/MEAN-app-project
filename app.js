@@ -30,19 +30,19 @@ var app = express();
 app.use(fileUpload());
 
 //multer with Amazon S3
-var upload = multer({
-  storage: multerS3({
-    s3: s3,
-    bucket: 'final-mean-project',
-    acl: 'public-read',
-    metadata: function (req, file, cb) {
-      cb(null, {fieldName: file.fieldname});
-    },
-    key: function (req, file, cb) {
-      cb(null, Date.now()+file.originalname);
-    }
-  })
-})
+// var upload = multer({
+//   storage: multerS3({
+//     s3: s3,
+//     bucket: 'final-mean-project',
+//     acl: 'public-read',
+//     metadata: function (req, file, cb) {
+//       cb(null, {fieldName: file.fieldname});
+//     },
+//     key: function (req, file, cb) {
+//       cb(null, Date.now()+file.originalname);
+//     }
+//   })
+// })
 
 // use mongoose to connect to mongo
 var mongoose = require( 'mongoose' );
@@ -91,5 +91,31 @@ app.use(function(err, req, res, next) {
 app.post('/upload', upload.array('photos', 3), function(req, res, next) {
   res.send('Successfully uploaded ' + req.files.length + ' files!')
 })
+
+app.get('/sign-s3', (req, res) => {
+  const s3 = new aws.S3();
+  const fileName = req.query['file-name'];
+  const fileType = req.query['file-type'];
+  const s3Params = {
+    Bucket: final-mean-project,
+    Key: fileName,
+    Expires: 60,
+    ContentType: fileType,
+    ACL: 'public-read'
+  };
+
+  s3.getSignedUrl('putObject', s3Params, (err, data) => {
+    if(err){
+      console.log(err);
+      return res.end();
+    }
+    const returnData = {
+      signedRequest: data,
+      url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
+    };
+    res.write(JSON.stringify(returnData));
+    res.end();
+  });
+});
 
 module.exports = app;
