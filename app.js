@@ -88,9 +88,9 @@ app.use(function(err, req, res, next) {
 });
 
 //multer response
-app.post('/upload', upload.array('photos', 3), function(req, res, next) {
-  res.send('Successfully uploaded ' + req.files.length + ' files!')
-})
+// app.post('/upload', upload.array('photos', 3), function(req, res, next) {
+//   res.send('Successfully uploaded ' + req.files.length + ' files!')
+// })
 
 app.get('/sign-s3', (req, res) => {
   const s3 = new aws.S3();
