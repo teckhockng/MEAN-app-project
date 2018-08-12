@@ -42,6 +42,54 @@
       <!-- </div> -->
     </fieldset>
 
+    <fieldset>
+      <legend>Additional Details</legend>
+     
+      <div id="additional_details">
+        <div class="form-group">
+          <button type="button" class="btn btn-success btn-sm" onclick="addSpecForm()">Add
+More Details</button>
+        </div>
+       
+        <% if ( profile.details && profile.details.length > 0 ) {%>
+          <% for ( let detail of profile.details ) { %>
+            <div class="detail">
+              <button type="button" class="remove btn btn-danger btn-small" onclick="
+delSpecForm(event)">&times;</button>
+              <div class="form-group mr-4">
+                <label for="detail[key]" class="mr-1">Key</label>
+                <input type="text" class="form-control" id="profile_detail_key"
+name="detail[key]" placeholder="Website" value="<%= detail.key %>">
+              </div>
+              <div class="form-group">
+                <label for="detail[value]" class="mr-1">Value</label>
+                <input type="text" class="form-control" id="profile_detail_value"
+name="detail[value]" placeholder="github.com" value="<%= detail.value %>">
+              </div>
+            </div>
+          <% } %>
+        <% } %>
+        <template id="additional_detail" class="form-inline mb-4">
+          <div class="detail">
+            <button type="button" class="remove btn btn-danger btn-small" onclick="
+delSpecForm(event)">&times;</button>
+
+            <div class="form-group mr-4">
+              <label for="detail[key]" class="mr-1">Key</label>
+              <input type="text" class="form-control" id="profile_detail_key"
+name="detail[key]" placeholder="Social Media">
+            </div>
+            <div class="form-group">
+              <label for="detail[value]" class="mr-1">Value</label>
+              <input type="text" class="form-control" id="profile_detail_value"
+name="detail[value]" placeholder="facebook.com/johndoe">
+          </div>
+          </div>
+        </template>
+      </div>
+    </fieldset>
+
+
     <div class="form-group">
       <button type="submit" class="btn btn-primary">Update profile</button>
     </div>

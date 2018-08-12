@@ -2,16 +2,16 @@ const mongoose = require( 'mongoose' );
 
 // all model classes will inherit from
 // the mongoose.Schema class
-// const SpecificationSchema = new mongoose.Schema({
-//   key: {
-//     type: String,
-//     required: 'You must have a key.'
-//   },
-//   value: {
-//     type: String,
-//     required: 'You must have a value.'
-//   }
-// });
+const DetailSchema = new mongoose.Schema({
+  key: {
+    type: String,
+    required: 'You must have a key.'
+  },
+  value: {
+    type: String,
+    required: 'You must have a value.'
+  }
+});
 
 const ImageSchema = new mongoose.Schema({
   image: {
@@ -40,10 +40,7 @@ const ProfileSchema = new mongoose.Schema({
   autobiography: {
     type: String
   },
-  image: {
-    data: Buffer,
-    contentType: String
-    }
+  details: [DetailSchema]
 });
 
 

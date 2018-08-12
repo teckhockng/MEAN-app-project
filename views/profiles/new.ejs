@@ -30,10 +30,37 @@
         <textarea class="form-control" id="autobiography" name="autobiography" placeholder="Autobiography here..." rows="4"></textarea>
       </div>
 
-      <div class="form-group">
+      <!-- <div class="form-group">
         <img style="border:1px solid gray;width:300px;"  id="preview" src="/images/Pepe_frog.jpg">
         <input type="file" name="image" id="image">
-      </div>
+      </div> -->
+
+      <legend>Additional Details</legend>
+     
+      <div id="additional_details">
+        <div class="form-group">
+          <button type="button" class="btn btn-success btn-sm" onclick="addSpecForm()">Add
+more details</button>
+        </div>
+        <template id="additional_detail" class="form-inline mb-4">
+          <div class="detail">
+            <button type="button" class="remove btn btn-danger btn-small"
+onclick="delSpecForm(event)">&times;</button>
+            <div class="form-group mr-4">
+              <label for="detail[key]" class="mr-1">Key</label>
+              <input type="text" class="form-control" id="profile_detail_key"
+name="detail[key]" placeholder="Websites">
+            </div>
+            <div class="form-group">
+              <label for="detail[value]" class="mr-1">Value</label>
+              <input type="text" class="form-control" id="profile_detail_value"
+name="detail[value]" placeholder="github.com">
+            </div>
+          </div>
+        </template>
+      </div>
+    </fieldset>
+
     </fieldset>
 
     <div class="form-group">

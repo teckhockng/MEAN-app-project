@@ -10,11 +10,7 @@
     <div class="col-sm-6">
       <div class="card">
           <div class="card-body">
-            <% if ( profile.image ) { %>
-              <!-- <div class="image">
-                <img src="<%= profile.image.data %>" class="img-thumbnail img-fluid">
-              </div> -->
-            <% } %>
+
 
             <h5 class="card-title">
               <%= profile.first_name %> <%= profile.last_name %>
@@ -31,6 +27,18 @@
             <p>
               <%= profile.autobiography %>
             </p>
+
+            <% if ( profile.details && profile.details.length > 0 ) { %>
+              <hr>
+              <h6>Additional Details</h6>
+              <% for( let detail of profile.details ) { %>
+                <p>
+                  <strong><%= detail.key %>: </strong>
+                  <%= detail.value %>
+                </p>
+              <% } %>
+            <% } %>
+
 
             <div class="actions">
               <a href="/profiles/<%= profile.id %>/edit" class="btn btn-primary">
